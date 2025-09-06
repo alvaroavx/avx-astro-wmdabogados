@@ -1,0 +1,33 @@
+---
+const {
+  title = "WMD Abogados",
+  description = "Firma de abogados en Chile que transmite confianza, ética y excelencia.",
+  url = "https://wmdabogados.cl",
+} = Astro.props;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content="/images/logo-wmd.png" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content="/images/logo-wmd.png" />
+
+<!-- JSON-LD básico: LegalService -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "WMD Abogados",
+  "url": url,
+  "areaServed": "CL",
+  "logo": "/images/logo-wmd.png"
+})}></script>
