@@ -2,6 +2,7 @@
 import SEO from "../components/SEO.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import "../styles/base.css";
 
 const { title = "WMD Abogados", description = "Firma de abogados en Chile que transmite confianza, ética y excelencia." } = Astro.props;
 ---
@@ -12,6 +13,7 @@ const { title = "WMD Abogados", description = "Firma de abogados en Chile que tr
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <SEO title={title} description={description} />
     <link rel="stylesheet" href="/src/styles/base.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50">
     <!-- Link de accesibilidad: skip link -->

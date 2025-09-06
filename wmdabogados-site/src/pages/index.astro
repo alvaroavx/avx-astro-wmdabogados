@@ -1,14 +1,68 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Inicio | WMD Abogados" description="Firma de abogados en Chile que transmite confianza, ética y excelencia.">
-  <section class="bg-petroleo text-white py-20">
-    <div class="max-w-5xl mx-auto text-center space-y-6">
-      <h1 class="text-4xl md:text-5xl font-bold">WMD Abogados</h1>
-      <p class="text-lg md:text-xl">Defendemos tus derechos con ética, excelencia y confianza.</p>
-      <a href="/contacto/" class="bg-white text-petroleo font-semibold px-6 py-3 rounded-md inline-block hover:bg-gray-100">
+<BaseLayout title="Inicio | WMD Consultores" description="Consultoría legal y estratégica en Chile.">
+  <!-- Hero -->
+  <section class="relative bg-petroleo text-white py-20 bg-cover bg-center"
+    style="background-image: url('/images/edificio.jpg');">
+    <!-- Capa de color semitransparente para que se lea bien el texto -->
+    <div class="absolute inset-0 bg-petroleo bg-opacity-20"></div>
+
+    <div class="relative max-w-5xl mx-auto text-center space-y-6">
+      <h1 class="text-4xl md:text-5xl font-bold">WMD CONSULTORES</h1>
+      <p class="text-lg md:text-xl">
+        Asesoría confiable, ética y estratégica para empresas y personas.
+      </p>
+      <a
+        href="/contacto/"
+        class="btn btn-secondary mt-6"
+      >
         Agenda una consulta
+      </a>
+    </div>
+  </section>
+
+  <!-- Áreas de práctica -->
+  <section class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-3 gap-6">
+    <a href="/areas/" class="p-6 border rounded-lg shadow hover:shadow-lg bg-white">
+      <h2 class="text-xl font-bold mb-2">Derecho de Familia</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </a>
+    <a href="/areas/" class="p-6 border rounded-lg shadow hover:shadow-lg bg-white">
+      <h2 class="text-xl font-bold mb-2">Derecho Laboral</h2>
+      <p>Curabitur blandit tempus porttitor. Integer posuere erat.</p>
+    </a>
+    <a href="/areas/" class="p-6 border rounded-lg shadow hover:shadow-lg bg-white">
+      <h2 class="text-xl font-bold mb-2">Derecho Civil</h2>
+      <p>Sed posuere consectetur est at lobortis. Maecenas sed diam eget.</p>
+    </a>
+  </section>
+
+  <!-- Equipo -->
+  <section class="bg-gray-100 py-16">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      <h2 class="text-3xl font-bold">Nuestro Equipo</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <a href="/equipo/" class="btn btn-primary">Conoce más</a>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-6 text-center">Últimos Artículos</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <a href="/blog/articulo-1/" class="p-6 border rounded-lg shadow bg-white hover:shadow-lg">
+        <h3 class="text-xl font-semibold mb-2">Artículo 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </a>
+      <a href="/blog/articulo-2/" class="p-6 border rounded-lg shadow bg-white hover:shadow-lg">
+        <h3 class="text-xl font-semibold mb-2">Artículo 2</h3>
+        <p>Curabitur blandit tempus porttitor. Integer posuere erat.</p>
+      </a>
+      <a href="/blog/articulo-3/" class="p-6 border rounded-lg shadow bg-white hover:shadow-lg">
+        <h3 class="text-xl font-semibold mb-2">Artículo 3</h3>
+        <p>Sed posuere consectetur est at lobortis. Maecenas sed diam eget.</p>
       </a>
     </div>
   </section>

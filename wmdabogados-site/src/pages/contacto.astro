@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contacto | WMD Consultores" description="Contáctanos para una consulta.">
+  <section class="max-w-3xl mx-auto px-4 py-16 space-y-6">
+    <h1 class="text-3xl font-bold">Contacto</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+    
+    <form class="space-y-4">
+      <div>
+        <label for="nombre" class="block mb-1 font-medium">Nombre</label>
+        <input id="nombre" type="text" class="w-full border rounded px-3 py-2" placeholder="Tu nombre" />
+      </div>
+      <div>
+        <label for="email" class="block mb-1 font-medium">Email</label>
+        <input id="email" type="email" class="w-full border rounded px-3 py-2" placeholder="tucorreo@ejemplo.com" />
+      </div>
+      <div>
+        <label for="mensaje" class="block mb-1 font-medium">Mensaje</label>
+        <textarea id="mensaje" class="w-full border rounded px-3 py-2" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </section>
+</BaseLayout>

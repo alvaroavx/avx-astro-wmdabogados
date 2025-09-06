@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* -----------------------
+   Estilos globales
+   ----------------------- */
+
+/* Fuente general (puedes cambiarla en tailwind.config si usas Google Fonts) */
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Color de fondo y texto base */
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+}
+
+/* Enlaces por defecto */
+a {
+  @apply text-petroleo hover:text-petroleo-light transition-colors;
+}
+
+/* Titulares */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight text-gray-900;
+}
+
+h1 { @apply text-4xl md:text-5xl; }
+h2 { @apply text-3xl md:text-4xl; }
+h3 { @apply text-2xl md:text-3xl; }
+
+/* Botones reutilizables */
+.btn {
+  @apply inline-block px-6 py-2 rounded-md font-semibold transition-colors;
+}
+
+.btn-primary {
+  @apply bg-petroleo text-white hover:bg-petroleo-light;
+}
+
+.btn-secondary {
+  @apply bg-white text-petroleo border border-petroleo hover:bg-gray-100;
+}
+
+/* Formularios */
+input, select, textarea {
+  @apply border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-petroleo;
+}
+
+/* Footer texto pequeño */
+footer p, footer a {
+  @apply text-sm;
+}
