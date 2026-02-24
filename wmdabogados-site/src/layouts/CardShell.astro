@@ -1,0 +1,144 @@
+﻿---
+import SEO from "../components/SEO.astro";
+import CardNavigation from "../components/CardNavigation.astro";
+import { CARD_ROUTES } from "../utils/cards";
+import "../styles/base.css";
+
+const {
+  title = "WMD Consultores",
+  description = "Asesoria juridica para personas y empresas en areas bancaria, financiera, comercial y tributaria.",
+} = Astro.props;
+
+const normalizePath = (path: string) => {
+  if (path !== "/" && path.endsWith("/")) return path.slice(0, -1);
+  return path;
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+---
+
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO title={title} description={description} url={Astro.url.href} />
+  </head>
+  <body class="m-0 h-full bg-gray-50 text-gray-900 antialiased">
+    <a href="#card-content" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 rounded-md bg-petroleo px-3 py-2 text-white">
+      Saltar al contenido principal
+    </a>
+
+    <div class="relative grid min-h-[100svh] grid-rows-[56px,auto,54px,28px] overflow-visible md:h-[100svh] md:grid-rows-[72px,1fr,72px,34px] md:overflow-hidden">
+      <header class="z-20 flex items-center justify-between gap-2 bg-[#0F4C5C] px-2 text-white md:gap-3 md:px-8">
+        <a href="/" class="brand-wordmark h-full text-white hover:text-white" aria-label="Ir a inicio">
+          <span class="brand-wmd">WMD</span>
+          <span class="brand-consultores">CONSULTORES</span>
+        </a>
+
+        <nav aria-label="Secciones" class="flex items-center gap-1 overflow-x-auto whitespace-nowrap py-1 md:gap-2">
+          {CARD_ROUTES.map((route) => (
+            <a
+              href={route.path}
+              class:list={[
+                "rounded-full px-2 py-1 text-[11px] font-medium text-white/95 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:px-3 md:text-sm",
+                "min-h-11",
+                currentPath === route.path ? "bg-white/20" : "hover:bg-white/15",
+              ]}
+            >
+              {route.shortLabel}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      <main id="card-content" class="relative h-auto overflow-visible md:h-full md:overflow-hidden" role="main">
+        <slot />
+        <CardNavigation currentPathname={currentPath} />
+      </main>
+
+      <footer class="z-10 flex items-center justify-center bg-[#0F4C5C] px-2 text-center text-[10px] leading-tight text-white md:px-4 md:text-sm">
+        <p class="max-w-6xl max-[380px]:hidden">
+          Dirección: Próximamente | Teléfono: (56) 2 2415 9171 | Correo: contacto@wmd.cl
+        </p>
+        <p class="max-w-6xl hidden max-[380px]:block">
+          Tel: (56) 2 2415 9171 | contacto@wmd.cl
+        </p>
+      </footer>
+
+      <div class="z-10 flex items-center justify-center bg-[#176D7A] px-2 text-center text-[10px] leading-tight text-white md:px-3 md:text-xs">
+        <p class="max-[380px]:hidden">
+          <a href="https://avx.cl/" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-2 hover:text-white">
+            Desarrollado por AVX Informática
+          </a>
+          {" "} {" "}© 2026 Todos los derechos reservados.
+        </p>
+        <p class="hidden max-[380px]:block">
+          <a href="https://avx.cl/" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-2 hover:text-white">AVX Informática</a>
+          {" "}© 2026
+        </p>
+      </div>
+    </div>
+
+    <script is:inline>
+      const fitTextBlocks = () => {
+        document.querySelectorAll("[data-autofit]").forEach((element) => {
+          const min = Number(element.getAttribute("data-autofit-min") ?? 8);
+          const max = Number(element.getAttribute("data-autofit-max") ?? 15);
+          let size = max;
+
+          element.style.fontSize = `${size}px`;
+
+          while (size > min && (element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth)) {
+            size -= 0.25;
+            element.style.fontSize = `${size}px`;
+          }
+        });
+      };
+
+      const initHorizontalTabs = () => {
+        document.querySelectorAll("[data-tabs]").forEach((tabsRoot) => {
+          const buttons = tabsRoot.querySelectorAll("[data-tab-target]");
+          const panels = tabsRoot.querySelectorAll("[data-tab-panel]");
+
+          const activate = (id) => {
+            buttons.forEach((button) => {
+              const isActive = button.getAttribute("data-tab-target") === id;
+              button.setAttribute("aria-selected", String(isActive));
+              button.setAttribute("tabindex", isActive ? "0" : "-1");
+              button.classList.toggle("bg-petroleo", isActive);
+              button.classList.toggle("text-white", isActive);
+              button.classList.toggle("bg-petroleo/10", !isActive);
+              button.classList.toggle("text-petroleo", !isActive);
+            });
+
+            panels.forEach((panel) => {
+              panel.classList.toggle("hidden", panel.getAttribute("data-tab-panel") !== id);
+            });
+
+            fitTextBlocks();
+          };
+
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => activate(button.getAttribute("data-tab-target")));
+          });
+
+          const first = buttons[0]?.getAttribute("data-tab-target");
+          if (first) activate(first);
+        });
+      };
+
+      const runCardScripts = () => {
+        initHorizontalTabs();
+        fitTextBlocks();
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", runCardScripts, { once: true });
+      } else {
+        runCardScripts();
+      }
+
+      window.addEventListener("resize", fitTextBlocks);
+    </script>
+  </body>
+</html>

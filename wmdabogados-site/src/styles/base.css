@@ -1,54 +1,412 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* -----------------------
-   Estilos globales
-   ----------------------- */
-
-/* Fuente general (puedes cambiarla en tailwind.config si usas Google Fonts) */
-html {
-  font-family: 'Inter', system-ui, sans-serif;
+/* =========================================================
+   1) Fuentes (self-host)
+   ========================================================= */
+/* Colocar archivos en /public/fonts/ */
+@font-face {
+  font-family: "MuseoSansCyrl";
+  src: url("/fonts/Museo Sans Cyrl 300.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* Color de fondo y texto base */
+@font-face {
+  font-family: "MuseoSansCyrl";
+  src: url("/fonts/Museo Sans Cyrl 700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fuente de acento para branding (fallback en --font-accent) */
+@font-face {
+  font-family: "Code";
+  src: url("/fonts/CODE_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/Cinzel-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================================================
+   2) Tokens de diseño
+   ========================================================= */
+:root {
+  /* Tipografías */
+  --font-sans: "MuseoSansCyrl", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-accent: "Code", "MuseoSansCyrl", system-ui, sans-serif;
+
+  /* Colores */
+  --c-brand: #004050;
+  --c-ink: #111827;
+  --c-muted: #6b7280;
+  --c-bg: #f3f4f6;
+  --c-card: #ffffff;
+  --c-border: rgba(0, 64, 80, 0.18);
+
+  /* Radio y sombra */
+  --r-card: 18px;
+  --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  /* Espaciado */
+  --p-xs: 10px;
+  --p-sm: 16px;
+  --p-md: 24px;
+  --p-lg: 32px;
+  --p-xl: 40px;
+
+  /* Escala tipográfica */
+  --h1: clamp(28px, 3.2vw, 40px);
+  --h2: clamp(16px, 1.6vw, 22px);
+  --body: 15px;
+  --small: 12.5px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 320ms;
+}
+
+/* =========================================================
+   3) Base global
+   ========================================================= */
+html,
 body {
-  @apply bg-gray-50 text-gray-900 antialiased;
+  height: 100%;
 }
 
-/* Enlaces por defecto */
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--c-ink);
+  background: var(--c-bg);
+  overflow: hidden; /* Sitio tipo tarjeta: sin scroll vertical global */
+  @apply antialiased;
+}
+
+/* Fuente de acento para títulos puntuales de marca */
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+/* Wordmark del header (WMD CONSULTORES) */
+.brand-wordmark {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45em;
+  height: auto;
+  font-size: clamp(1.2rem, 2.9vh, 1.8rem);
+  padding-block: 0.08em; /* aire superior/inferior */
+  line-height: 1;
+  color: #fff;
+  font-family: "Cinzel", "MuseoSansCyrl", serif;
+}
+
+.brand-wmd {
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.3em; /* 30% mayor que CONSULTORES */
+}
+
+.brand-consultores {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: 650;
+  font-size: 1em;
+  line-height: 1;
+}
+
+/* =========================================================
+   4) Elementos HTML base
+   ========================================================= */
 a {
   @apply text-petroleo hover:text-petroleo-light transition-colors;
 }
 
-/* Titulares */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply font-bold tracking-tight text-gray-900;
 }
 
-h1 { @apply text-4xl md:text-5xl; }
-h2 { @apply text-3xl md:text-4xl; }
-h3 { @apply text-2xl md:text-3xl; }
-
-/* Botones reutilizables */
-.btn {
-  @apply inline-block px-6 py-2 rounded-md font-semibold transition-colors;
+h1 {
+  @apply text-4xl md:text-5xl;
 }
 
+h2 {
+  @apply text-3xl md:text-4xl;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl;
+}
+
+input,
+select,
+textarea {
+  @apply w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-petroleo;
+}
+
+footer p,
+footer a {
+  @apply text-sm;
+}
+
+/* =========================================================
+   5) Componentes utilitarios
+   ========================================================= */
+/* Botón base reutilizable */
+.btn {
+  appearance: none;
+  @apply inline-flex items-center justify-center rounded-full border border-transparent px-6 py-2 font-semibold transition-colors;
+  cursor: pointer;
+  font: inherit;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Variantes legacy (usadas en varias vistas) */
 .btn-primary {
   @apply bg-petroleo text-white hover:bg-petroleo-light;
 }
 
 .btn-secondary {
-  @apply bg-white text-petroleo border border-petroleo hover:bg-gray-100;
+  @apply border-petroleo bg-white text-petroleo hover:bg-gray-100;
 }
 
-/* Formularios */
-input, select, textarea {
-  @apply border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-petroleo;
+/* Variantes tokenizadas */
+.btn--primary {
+  background: var(--c-brand);
+  color: #fff;
 }
 
-/* Footer texto pequeño */
-footer p, footer a {
-  @apply text-sm;
+.btn--outline {
+  background: transparent;
+  border-color: var(--c-brand);
+  color: var(--c-brand);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Texto utilitario */
+.h1 {
+  margin: 0;
+  font-size: var(--h1);
+  font-weight: 700;
+  color: var(--c-brand);
+  letter-spacing: 0.02em;
+}
+
+.section-title {
+  margin: 0;
+  font-size: var(--h2);
+  font-weight: 700;
+  color: var(--c-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.p {
+  margin: 0;
+  font-size: var(--body);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--c-ink);
+}
+
+.muted {
+  font-size: var(--body);
+  font-weight: 300;
+  color: var(--c-muted);
+}
+
+.small {
+  font-size: var(--small);
+  color: var(--c-muted);
+}
+
+/* Callout con barra vertical */
+.callout {
+  display: grid;
+  grid-template-columns: 4px 1fr;
+  align-items: start;
+  gap: var(--p-sm);
+}
+
+.callout::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--c-brand);
+}
+
+.callout__text {
+  font-size: var(--small);
+  font-weight: 700;
+  color: var(--c-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   6) Layout helpers (compatibilidad)
+   ========================================================= */
+.card-shell {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  padding: var(--p-md);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.card {
+  width: min(1040px, 100%);
+  height: min(720px, 100%);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: var(--r-card);
+  background: var(--c-card);
+  box-shadow: var(--shadow-card);
+}
+
+.card__header,
+.card__footer {
+  padding: var(--p-md);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.card__footer {
+  border-top: 1px solid var(--c-border);
+  border-bottom: none;
+}
+
+.card__content {
+  padding: var(--p-md);
+  display: grid;
+  align-content: start;
+  gap: var(--p-sm);
+  overflow: hidden;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--p-md);
+  overflow: hidden;
+}
+
+/* =========================================================
+   7) Animaciones de transición horizontal
+   ========================================================= */
+.card-anim-enter {
+  opacity: 0;
+  transform: translateX(18px);
+}
+
+.card-anim-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.card-anim-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.card-anim-exit-active {
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+/* =========================================================
+   8) Responsive
+   ========================================================= */
+@media (max-width: 860px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .card {
+    height: 100%;
+  }
+
+  .cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-wordmark {
+    font-size: clamp(0.9rem, 2.1vh, 1.15rem);
+    gap: 0.3em;
+  }
+
+  .brand-consultores {
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-wordmark {
+    font-size: clamp(0.8rem, 1.9vh, 1rem);
+  }
+
+  .brand-consultores {
+    letter-spacing: 0.1em;
+  }
+
+  .btn {
+    @apply px-4 py-1.5 text-xs;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;
+  }
+
+  input,
+  select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  textarea {
+    font-size: 16px;
+  }
 }

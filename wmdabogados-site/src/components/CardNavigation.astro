@@ -1,0 +1,151 @@
+﻿---
+import { CARD_ROUTES } from "../utils/cards";
+
+const { currentPathname } = Astro.props;
+
+const normalizePath = (path: string) => {
+  if (path !== "/" && path.endsWith("/")) return path.slice(0, -1);
+  return path;
+};
+
+const currentPath = normalizePath(currentPathname);
+const currentIndex = Math.max(0, CARD_ROUTES.findIndex((route) => route.path === currentPath));
+const previousRoute = CARD_ROUTES[currentIndex - 1] ?? null;
+const nextRoute = CARD_ROUTES[currentIndex + 1] ?? null;
+---
+
+<nav class="pointer-events-none absolute inset-x-0 bottom-2 z-20 hidden pb-1 md:bottom-4 md:block" aria-label="Navegacion horizontal">
+  <div class="mx-auto flex w-full items-center justify-between px-1.5 md:px-5">
+    <a
+      class:list={[
+        "pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-petroleo/25 bg-white/90 text-lg text-petroleo shadow-sm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:h-11 md:w-11 md:text-xl",
+        !previousRoute && "pointer-events-none opacity-30",
+      ]}
+      aria-label="Ir a tarjeta anterior"
+      href={previousRoute?.path ?? "#"}
+      data-card-target={previousRoute?.path ?? ""}
+    >
+      <span aria-hidden="true">&larr;</span>
+    </a>
+
+    <div class="pointer-events-auto flex items-center gap-1.5 rounded-full border border-petroleo/20 bg-white/90 px-2.5 py-1 text-[11px] text-petroleo shadow-sm backdrop-blur md:gap-3 md:px-4 md:py-2 md:text-sm">
+      <span aria-live="polite" aria-atomic="true">{currentIndex + 1}/{CARD_ROUTES.length}</span>
+      <ul class="hidden items-center gap-2 sm:flex" role="list">
+        {CARD_ROUTES.map((route, index) => (
+          <li>
+            <a
+              href={route.path}
+              aria-label={`Ir a ${route.label}`}
+              aria-current={index === currentIndex ? "page" : undefined}
+              data-card-target={route.path}
+              class:list={[
+                "block h-2.5 w-2.5 rounded-full border border-petroleo/40 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo",
+                index === currentIndex ? "bg-petroleo" : "bg-transparent",
+              ]}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <a
+      class:list={[
+        "pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-petroleo/25 bg-white/90 text-lg text-petroleo shadow-sm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:h-11 md:w-11 md:text-xl",
+        !nextRoute && "pointer-events-none opacity-30",
+      ]}
+      aria-label="Ir a tarjeta siguiente"
+      href={nextRoute?.path ?? "#"}
+      data-card-target={nextRoute?.path ?? ""}
+    >
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</nav>
+
+<script is:inline define:vars={{ routes: CARD_ROUTES }}>
+  const normalizePath = (path) => {
+    if (path !== "/" && path.endsWith("/")) return path.slice(0, -1);
+    return path;
+  };
+
+  const getCurrentIndex = () => {
+    const pathname = normalizePath(window.location.pathname);
+    return routes.findIndex((route) => route.path === pathname);
+  };
+
+  const navigateTo = (path) => {
+    if (!path || normalizePath(path) === normalizePath(window.location.pathname)) {
+      return;
+    }
+
+    history.pushState({}, "", path);
+    window.location.assign(path);
+  };
+
+  document.querySelectorAll("[data-card-target]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetPath = link.getAttribute("data-card-target");
+      if (!targetPath) return;
+      event.preventDefault();
+      navigateTo(targetPath);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const activeTag = document.activeElement?.tagName;
+    if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(activeTag) || document.activeElement?.isContentEditable) {
+      return;
+    }
+
+    const currentIndex = getCurrentIndex();
+    if (currentIndex < 0) return;
+
+    if (event.key === "ArrowRight") {
+      const next = routes[currentIndex + 1];
+      if (next) {
+        event.preventDefault();
+        navigateTo(next.path);
+      }
+    }
+
+    if (event.key === "ArrowLeft") {
+      const previous = routes[currentIndex - 1];
+      if (previous) {
+        event.preventDefault();
+        navigateTo(previous.path);
+      }
+    }
+  });
+
+  let touchStartX = 0;
+
+  document.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartX = event.changedTouches[0]?.clientX ?? 0;
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "touchend",
+    (event) => {
+      const endX = event.changedTouches[0]?.clientX ?? 0;
+      const deltaX = endX - touchStartX;
+      const threshold = 45;
+      const currentIndex = getCurrentIndex();
+      if (currentIndex < 0) return;
+
+      if (deltaX <= -threshold) {
+        const next = routes[currentIndex + 1];
+        if (next) navigateTo(next.path);
+      }
+
+      if (deltaX >= threshold) {
+        const previous = routes[currentIndex - 1];
+        if (previous) navigateTo(previous.path);
+      }
+    },
+    { passive: true },
+  );
+</script>

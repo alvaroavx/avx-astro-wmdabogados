@@ -1,15 +1,114 @@
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
+﻿---
+import CardShell from "../../layouts/CardShell.astro";
+
+const areas = [
+  {
+    id: "bancario",
+    title: "Derecho Bancario y Financiero",
+    items: [
+      "<strong>Tramitación y obtención de licencias bancarias</strong>, constitución de agencias o sucursales de bancos extranjeros, organización y establecimiento de oficinas de representación.",
+      "<u>Concentración bancaria, fusiones y tomas de control</u>, apertura de oficinas o filiales en el extranjero.",
+      "Operaciones bancarias activas, pasivas y neutras, así como servicios bancarios y financieros en general.",
+      "<em>Transacciones con productos derivados</em>, tanto en el mercado doméstico como en el internacional.",
+    ],
+  },
+  {
+    id: "mercado-valores",
+    title: "Derecho de Mercado de Valores",
+    items: [
+      "<strong>Oferta Pública de Valores</strong>, emisión y colocación de bonos u otros títulos de deuda, intermediación de valores y securitización de activos.",
+      "Compensación de instrumentos financieros, tomas de control y ofertas públicas de adquisición de acciones.",
+      "<u>Fondos Mutuos de inversión y privados</u>; administración y gestión de carteras, inversiones en mercado doméstico y extranjero.",
+      "<em>Protección de información corporativa</em>, deber de reserva e información privilegiada.",
+    ],
+  },
+  {
+    id: "cumplimiento",
+    title: "Cumplimiento",
+    items: [
+      "<strong>Regulación financiera sobre libre competencia</strong>.",
+      "Responsabilidad penal de las personas jurídicas y de mercados de valores y capitales.",
+      "<u>Prevención de lavado de activos</u> y <em>blanqueo de capitales</em>.",
+    ],
+  },
+  {
+    id: "comercial",
+    title: "Derecho Comercial, Empresarial & Concursal",
+    items: [
+      "<strong>Creación, organización, fusión, división, adquisición, venta, disolución y liquidación</strong> de empresas, sociedades y vehículos de negocios.",
+      "<u>Gobierno corporativo</u>, sesiones de directorio, deberes fiduciarios, juntas de accionistas, hechos esenciales y reporte de información.",
+      "Inversión extranjera, operaciones de cambios internacionales y cumplimiento de normativa del Banco Central y superintendencias del área económica.",
+      "<em>Acuerdos de reorganización y procedimientos concursales</em>, solicitudes de bancarrota personal o empresarial, acuerdos de repactación y otros asuntos concursales.",
+    ],
+  },
+  {
+    id: "judicial",
+    title: "Judicial & Arbitraje",
+    items: [
+      "<strong>Defensa y representación</strong> ante tribunales judiciales de todo tipo.",
+      "Representación ante autoridades administrativas.",
+      "<u>Arbitraje institucional o convencional</u>.",
+    ],
+  },
+  {
+    id: "civil",
+    title: "Derecho Civil",
+    items: [
+      "<strong>Asuntos inmobiliarios</strong>, servidumbres, usufructos, hipotecas, garantías mobiliarias, negociación y sindicación de créditos, project finance y redacción de contratos.",
+      "<u>Consultoría en regímenes patrimoniales</u>, convenciones prenupciales y liquidación de sociedades conyugales y regímenes de participación en los gananciales.",
+      "<em>Planificación sucesoria</em>, redacción de testamentos, donaciones y particiones convencionales o judiciales.",
+    ],
+  },
+];
 ---
 
-<BaseLayout title="Áreas de Práctica | WMD Consultores" description="Conoce nuestras áreas de práctica.">
-  <section class="max-w-5xl mx-auto px-4 py-16 space-y-6">
-    <h1 class="text-3xl font-bold">Áreas de Práctica</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <ul class="list-disc pl-6 space-y-2">
-      <li><a href="/areas/derecho-familia/">Derecho de Familia</a></li>
-      <li><a href="/areas/derecho-laboral/">Derecho Laboral</a></li>
-      <li><a href="/areas/derecho-civil/">Derecho Civil</a></li>
-    </ul>
+<CardShell title="Áreas | WMD Consultores" description="Áreas de práctica de WMD Consultores.">
+  <section class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
+    <header>
+      <h1 class="text-4xl text-petroleo md:text-5xl">Áreas</h1>
+    </header>
+
+    <div class="flex min-h-0 gap-3 overflow-x-auto snap-x snap-mandatory md:grid md:overflow-visible md:snap-none md:grid-cols-2 xl:grid-cols-3" id="areas-grid">
+      {areas.map((area, index) => (
+        <article
+          class:list={[
+            "group grid min-h-0 min-w-[86%] snap-center grid-rows-[auto,1fr] gap-2 rounded-xl border p-3 transition-all duration-200 hover:z-10 hover:scale-[1.02] md:min-w-0 md:p-4",
+            index === 0
+              ? "border-petroleo bg-petroleo/10 shadow-sm"
+              : "border-petroleo/15 bg-gray-50",
+          ]}
+          tabindex="0"
+          data-area-card
+        >
+          <h2 class="text-lg font-semibold text-petroleo md:text-xl">{area.title}</h2>
+          <ul class="list-disc pl-5 leading-snug text-gray-800 md:text-[1.02rem]" data-autofit data-autofit-min="7.5" data-autofit-max="14">
+            {area.items.map((item) => (
+              <li set:html={item} />
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
   </section>
-</BaseLayout>
+
+  <script is:inline>
+    const cards = document.querySelectorAll("[data-area-card]");
+
+    const activateCard = (target) => {
+      cards.forEach((card) => {
+        const active = card === target;
+        card.classList.toggle("border-petroleo", active);
+        card.classList.toggle("bg-petroleo/10", active);
+        card.classList.toggle("shadow-sm", active);
+        card.classList.toggle("border-petroleo/15", !active);
+        card.classList.toggle("bg-gray-50", !active);
+      });
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => activateCard(card));
+      card.addEventListener("focus", () => activateCard(card));
+      card.addEventListener("click", () => activateCard(card));
+    });
+  </script>
+</CardShell>

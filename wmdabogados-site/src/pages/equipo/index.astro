@@ -1,24 +1,75 @@
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
+﻿---
+import CardShell from "../../layouts/CardShell.astro";
+
+const team = [
+  {
+    id: "daniel",
+    name: "Daniel Alejandro González Cena",
+    role: "Abogado",
+    title: "Socio de WMD Consultores",
+    email: "dgonzalez@wmd.cl",
+    bio: "Su práctica se centra en <strong>Derecho Financiero y Bancario</strong>, especificamente en temas de regulación bancaria, sistemas de pago, cambios internaciones, igualmente cuenta con amplia experiencia en <u>Derecho Público y Litigios</u>. Se desempeñó durante siete años como Abogado en el área normativa de la Fiscalía del Banco Central de Chile, donde participó en la redacción de la regulación contenida en los Compendios de Normas y reglamentos del Banco. Adicionalmente, representó judicialmente al Banco Central entribunales con competencia en materia penal y ante Cortes de Apelaciones. Abogado de la Universidad de Chile, <em>Master en Derecho Bancario y Financiero de Boston University</em> con mención en Compliance Management y Lending and Credit Transactions, estudios de Magíster en Derecho en la Universidad de Chile, adicionalmente poseé un Diplomado en Reforma al Proceso Penal de la Universidad Alberto Hurtado. Desde el año 2005 se ha desempeñado como Ayudante Ad Honorem en las cátedras de Derecho Administrativo, Responsabilidad del Estado y Probidad y Transparecia Pública, en la Facultad de Derecho de la Universidad de Chile. En el año 2014 participó como Becario del Curso \"La Banca Central Moderna: hacia una visión integral\", en el Centro de Estudios Monetarios Latinoamericanos (CEMLA) en Ciudad de México.",
+  },
+  {
+    id: "wildo",
+    name: "Wildo Moya Plaza",
+    role: "Abogado",
+    title: "Director de WMD Consultores",
+    email: "wmoya@wmd.cl",
+    bio: "Su práctica se centra en el <strong>Mercado de Valores</strong>, Derecho Bancario, Inversión Extranjera, Cambios Internacionales, Derecho Societario, Asuntos Tributarios, Materias Regulatorias y Derecho Comercial. Previamente, se desempeño como Consultor Externo de Codelco-Chile, Socio Fundador de Mercatoria Consultores- Estudio Jurídico y durante <u>13 años como Abogado senior del área normativa del Banco Central de Chile</u>. Abogado de la Pontificia Universidad Católica de Chile, <em>Magister DLL en Derecho de los Negocios de la Universidad Adolfo Ibáñez</em>, becario del Centro de Estudios Monetarios Latinoamericanos CEMLA. Su experiencia como Docente la ha adquirido en sus cátedras de Derecho Comercial, Gobierno Corporativo y Derecho Concursal tanto para alumnos de pregrado como de Magister en las facultades de Derecho de la Pontificia Universidad Católica de Chile, la Universidad Finnis Terrae y de la Universidad Andrés Bello. Dentro de sus más destacadas publicaciones se encuentra Arbitrabilidad de los conflictos societarios en el derecho interno de Chile; Casos para la Enseñanza del Derecho, Ediciones UC, Obra Colectiva; Co-redactor del ensayo Régimen de Transparencia y su relación con la Autonomía Constitucional del Banco Central de Chile; Características de los Instrumentos del Mercado Financiero Nacional del Banco Central de Chile; Aspectos Societarios, de Cambios Internacionales y de Regímenes de Inversión Extranjera, aplicables a empresas de capital extranjero constituidas en Chile para invertir en el Exterior; Empresa Individual de Responsabilidad Limitada, Revista Chilena de Derecho; Algunas consideraciones sobre el Estado de Insolvencia en los Procedimientos Concursales, Revista de Derecho de la Universidad Finis Terrae. Durante su trayectoría profesional ha sido reconocido con las siguientes disticiones Premio al mejor alumno de la promoción del Master of Business Law de la Universidad Adolfo Ibáñez, Premio Mejor Profesor, Facultad de Derecho, Universidad Finis Terrae; Becario del Centro de Estudios Monetarios Latinoamericanos, (CEMLA), México-EUA; Premio Docente Destacado, Facultad de Derecho, Pontificia Universidad Católica de Chile; Premio Monseñor Carlos Casanueva, Facultad de Derecho, Pontificia Universidad Católica de Chile; Premio Luis Gutiérrez Alliende, Facultad de Derecho, Pontificia Universidad Católica de Chile.",
+  },
+  {
+    id: "marcelo",
+    name: "Marcelo Sandoval Visscher",
+    role: "Coordinador Finanzas-Clientes",
+    title: "Coordinador Comercial y Finanzas",
+    email: "msandoval@wmd.cl",
+    bio: "<strong>Tecnico Financiero</strong>, con estudios legales y de auditoría, con amplia experiencia en instituciones financieras, especialmente en Bancos y compañías de Seguro, como <u>Zonal de Normalización, Ejecutivo de Cuentas y Ventas</u>, y Administrativo back office, en Santiago y VI Región.",
+  },
+];
 ---
 
-<BaseLayout title="Nuestro Equipo | WMD Consultores" description="Conoce al equipo de WMD Consultores.">
-  <section class="max-w-5xl mx-auto px-4 py-16 space-y-6">
-    <h1 class="text-3xl font-bold">Nuestro Equipo</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 border rounded shadow bg-white">
-        <h2 class="font-bold text-lg mb-2">Nombre 1</h2>
-        <p>Especialidad – Lorem ipsum dolor sit amet, consectetur.</p>
-      </div>
-      <div class="p-6 border rounded shadow bg-white">
-        <h2 class="font-bold text-lg mb-2">Nombre 2</h2>
-        <p>Especialidad – Lorem ipsum dolor sit amet, consectetur.</p>
-      </div>
-      <div class="p-6 border rounded shadow bg-white">
-        <h2 class="font-bold text-lg mb-2">Nombre 3</h2>
-        <p>Especialidad – Lorem ipsum dolor sit amet, consectetur.</p>
+<CardShell title="Equipo | WMD Consultores" description="Equipo de profesionales de WMD Consultores.">
+  <section class="grid h-full grid-rows-[11.5rem,auto,1fr] overflow-hidden md:grid-rows-[20rem,auto,1fr]" data-tabs>
+    <div class="relative w-full overflow-hidden">
+      <img src="/images/nosotros.png" alt="Equipo WMD Consultores" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50"></div>
+      <h1 class="absolute bottom-4 left-5 text-3xl font-bold text-white md:bottom-6 md:left-8 md:text-5xl">Equipo</h1>
+    </div>
+
+    <div class="px-3 pt-2 pb-2 md:px-8 md:pt-4 md:pb-4">
+      <div class="flex gap-2 overflow-x-auto whitespace-nowrap" role="tablist" aria-label="Equipo WMD Consultores">
+        {team.map((person) => (
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+            data-tab-target={person.id}
+            class="shrink-0 min-h-11 rounded-full bg-petroleo/10 px-2.5 py-1.5 text-xs font-semibold text-petroleo focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:px-3 md:text-sm"
+          >
+            {person.name}
+          </button>
+        ))}
       </div>
     </div>
+
+    <div class="min-h-0 px-3 pb-3 md:px-8 md:pb-8">
+      {team.map((person) => (
+        <article data-tab-panel={person.id} class="grid h-full min-h-0 gap-3 rounded-xl border border-petroleo/15 bg-gray-50 p-4 md:grid-cols-[1fr,3fr] md:p-5" role="tabpanel">
+          <div class="rounded-lg bg-white p-3 md:p-4">
+            <h2 class="text-lg font-semibold text-petroleo md:text-2xl">{person.name}</h2>
+            <p class="text-sm font-medium text-gray-700 md:text-base">{person.role}</p>
+            <p class="text-sm text-gray-600 md:text-base">{person.title}</p>
+            <a href={`mailto:${person.email}`} class="mt-1 inline-block text-sm font-semibold underline underline-offset-4 md:text-base">{person.email}</a>
+          </div>
+
+          <div class="min-h-0 rounded-lg border border-petroleo/10 bg-white p-3 md:p-4">
+            <p class="h-full leading-tight text-gray-800" data-autofit data-autofit-min="7" data-autofit-max="14" set:html={person.bio} />
+          </div>
+        </article>
+      ))}
+    </div>
   </section>
-</BaseLayout>
+</CardShell>
+
