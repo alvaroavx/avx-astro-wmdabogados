@@ -3,7 +3,7 @@ import CardShell from "../layouts/CardShell.astro";
 ---
 
 <CardShell title="Nosotros | WMD Consultores" description="Estrategia jurídica clara, con defensa integral para personas y empresas.">
-  <section class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
+  <section slot="desktop" class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
     <header class="space-y-2">
       <h1 class="text-3xl text-petroleo md:text-4xl">Nosotros</h1>
       <p class="text-sm text-gray-700 md:text-base">Estrategia jurídica clara, con defensa integral para personas y empresas.</p>
@@ -60,6 +60,48 @@ import CardShell from "../layouts/CardShell.astro";
           </p>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section slot="mobile" class="d-grid gap-3">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 text-petroleo mb-2">Nosotros</h1>
+        <p class="text-muted mb-3">Estrategia jurídica clara, con defensa integral para personas y empresas.</p>
+        <ul class="mb-3">
+          <li>Asesoría a personas y empresas en diagnóstico de necesidades jurídicas en áreas bancaria, financiera, comercial y tributaria.</li>
+          <li>Planificación e implementación de soluciones recomendadas.</li>
+          <li>Exposición clara y transparente de alternativas para decisiones informadas.</li>
+          <li>Certeza jurídica, minimizando costos y optimizando oportunidades comerciales.</li>
+          <li>Defensa judicial y administrativa de intereses y derechos cuando corresponde.</li>
+        </ul>
+        <div class="border-start border-4 border-info ps-3 mb-3">
+          <strong>Claridad y transparencia para decisiones informadas, con certeza jurídica.</strong>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex">
+          <a href="/areas" class="btn btn-outline-primary">Ver Áreas</a>
+          <a href="/contacto" class="btn btn-primary">Contacto</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-3">Cómo trabajamos</h2>
+        <div class="d-grid gap-2 mb-3">
+          <div class="badge text-bg-light border text-petroleo py-2">Diagnóstico</div>
+          <div class="badge text-bg-light border text-petroleo py-2">Alternativas claras</div>
+          <div class="badge text-bg-light border text-petroleo py-2">Implementación / Defensa</div>
+        </div>
+        <p class="mb-2">
+          Nuestro modelo de trabajo busca crear lazos personalizados y de confianza con nuestros clientes, mediante una asesoría realizada por profesionales con amplia experiencia en el ámbito privado y público.
+        </p>
+        <p class="mb-3">
+          Nos enfocamos en otorgar respuestas oportunas, tanto en asuntos cotidianos como en temas complejos del quehacer empresarial.
+        </p>
+        <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-2">Alianza estratégica</h2>
+        <p class="mb-0">Somos aliados estratégicos de Miguel Ángel Nacrur, abogado experto en temas bancarios y comerciales.</p>
+      </div>
     </div>
   </section>
 </CardShell>

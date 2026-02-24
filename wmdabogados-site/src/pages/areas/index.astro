@@ -63,7 +63,7 @@ const areas = [
 ---
 
 <CardShell title="Áreas | WMD Consultores" description="Áreas de práctica de WMD Consultores.">
-  <section class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
+  <section slot="desktop" class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
     <header>
       <h1 class="text-4xl text-petroleo md:text-5xl">Áreas</h1>
     </header>
@@ -89,6 +89,27 @@ const areas = [
         </article>
       ))}
     </div>
+  </section>
+
+  <section slot="mobile" class="d-grid gap-3">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 text-petroleo mb-0">Áreas</h1>
+      </div>
+    </div>
+
+    {areas.map((area) => (
+      <article class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h2 class="h5 text-petroleo mb-2">{area.title}</h2>
+          <ul class="mb-0">
+            {area.items.map((item) => (
+              <li set:html={item} />
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
   </section>
 
   <script is:inline>

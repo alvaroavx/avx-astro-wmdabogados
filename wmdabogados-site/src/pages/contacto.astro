@@ -4,7 +4,7 @@ import { BROCHURE_URL } from "../utils/cards";
 ---
 
 <CardShell title="Contacto | WMD Consultores" description="Contáctanos para recibir asesoría jurídica.">
-  <section class="grid h-full grid-rows-[auto,1fr] gap-3 p-3 md:gap-4 md:p-8">
+  <section slot="desktop" class="grid h-full grid-rows-[auto,1fr] gap-3 p-3 md:gap-4 md:p-8">
     <header class="space-y-2">
       <h1 class="text-3xl text-petroleo md:text-4xl">Contacto</h1>
     </header>
@@ -44,6 +44,36 @@ import { BROCHURE_URL } from "../utils/cards";
     </div>
   </section>
 
+  <section slot="mobile" class="d-grid gap-3">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 text-petroleo mb-2">Contacto</h1>
+        <p class="mb-3">Nos estamos trasladando a otra oficina, pronto informaremos nuestra nueva dirección.</p>
+        <p class="mb-1"><strong>Teléfono:</strong> (56) 2 2415 9171</p>
+        <a href={BROCHURE_URL} download class="btn btn-outline-primary btn-sm mt-2">Descargar brochure</a>
+      </div>
+    </div>
+
+    <form id="contact-form-mobile" class="card border-0 shadow-sm">
+      <div class="card-body d-grid gap-3">
+        <div>
+          <label for="nombre-mobile" class="form-label">Nombre</label>
+          <input id="nombre-mobile" name="nombre" type="text" class="form-control" required />
+        </div>
+        <div>
+          <label for="correo-mobile" class="form-label">Correo</label>
+          <input id="correo-mobile" name="correo" type="email" class="form-control" required />
+        </div>
+        <div>
+          <label for="mensaje-mobile" class="form-label">Mensaje</label>
+          <textarea id="mensaje-mobile" name="mensaje" rows="4" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <p id="form-status-mobile" class="small mb-0" aria-live="polite"></p>
+      </div>
+    </form>
+  </section>
+
   <script is:inline>
     const form = document.querySelector("#contact-form");
     const status = document.querySelector("#form-status");
@@ -69,6 +99,33 @@ import { BROCHURE_URL } from "../utils/cards";
         status.className = "text-sm font-medium text-green-700";
         status.textContent = "¡Muchas gracias! Su correo ha sido enviado.";
         form.reset();
+      });
+    }
+
+    const formMobile = document.querySelector("#contact-form-mobile");
+    const statusMobile = document.querySelector("#form-status-mobile");
+
+    if (formMobile && statusMobile) {
+      formMobile.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        statusMobile.className = "small mb-0 text-muted";
+        statusMobile.textContent = "Enviando...";
+
+        const data = new FormData(formMobile);
+        const nombre = (data.get("nombre") ?? "").toString().trim();
+        const correo = (data.get("correo") ?? "").toString().trim();
+        const mensaje = (data.get("mensaje") ?? "").toString().trim();
+
+        if (!nombre || !correo || !mensaje) {
+          statusMobile.className = "small mb-0 text-danger";
+          statusMobile.textContent = "Lo sentimos, ha habido un problema, por favor intente nuevamente.";
+          return;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        statusMobile.className = "small mb-0 text-success";
+        statusMobile.textContent = "¡Muchas gracias! Su correo ha sido enviado.";
+        formMobile.reset();
       });
     }
   </script>

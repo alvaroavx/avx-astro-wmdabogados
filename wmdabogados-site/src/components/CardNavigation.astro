@@ -15,10 +15,10 @@ const nextRoute = CARD_ROUTES[currentIndex + 1] ?? null;
 ---
 
 <nav class="pointer-events-none absolute inset-x-0 bottom-2 z-20 hidden pb-1 md:bottom-4 md:block" aria-label="Navegacion horizontal">
-  <div class="mx-auto flex w-full items-center justify-between px-1.5 md:px-5">
+  <div class="mx-auto flex w-full items-center justify-between px-3 md:px-5">
     <a
       class:list={[
-        "pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-petroleo/25 bg-white/90 text-lg text-petroleo shadow-sm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:h-11 md:w-11 md:text-xl",
+        "pointer-events-auto inline-flex h-9 w-9 items-center justify-center rounded-full border border-petroleo/25 bg-white/90 text-lg text-petroleo shadow-sm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:h-11 md:w-11 md:text-xl",
         !previousRoute && "pointer-events-none opacity-30",
       ]}
       aria-label="Ir a tarjeta anterior"
@@ -28,7 +28,7 @@ const nextRoute = CARD_ROUTES[currentIndex + 1] ?? null;
       <span aria-hidden="true">&larr;</span>
     </a>
 
-    <div class="pointer-events-auto flex items-center gap-1.5 rounded-full border border-petroleo/20 bg-white/90 px-2.5 py-1 text-[11px] text-petroleo shadow-sm backdrop-blur md:gap-3 md:px-4 md:py-2 md:text-sm">
+    <div class="pointer-events-auto flex items-center gap-2 rounded-full border border-petroleo/20 bg-white/90 px-3 py-1.5 text-xs text-petroleo shadow-sm backdrop-blur md:gap-3 md:px-4 md:py-2 md:text-sm">
       <span aria-live="polite" aria-atomic="true">{currentIndex + 1}/{CARD_ROUTES.length}</span>
       <ul class="hidden items-center gap-2 sm:flex" role="list">
         {CARD_ROUTES.map((route, index) => (
@@ -50,7 +50,7 @@ const nextRoute = CARD_ROUTES[currentIndex + 1] ?? null;
 
     <a
       class:list={[
-        "pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-petroleo/25 bg-white/90 text-lg text-petroleo shadow-sm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:h-11 md:w-11 md:text-xl",
+        "pointer-events-auto inline-flex h-9 w-9 items-center justify-center rounded-full border border-petroleo/25 bg-white/90 text-lg text-petroleo shadow-sm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo md:h-11 md:w-11 md:text-xl",
         !nextRoute && "pointer-events-none opacity-30",
       ]}
       aria-label="Ir a tarjeta siguiente"
