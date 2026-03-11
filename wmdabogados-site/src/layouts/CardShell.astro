@@ -15,6 +15,7 @@ const normalizePath = (path: string) => {
 };
 
 const currentPath = normalizePath(Astro.url.pathname);
+const isHome = currentPath === "/";
 ---
 
 <html lang="es" class="h-full">
@@ -35,8 +36,18 @@ const currentPath = normalizePath(Astro.url.pathname);
       Saltar al contenido principal
     </a>
 
-    <div class="desktop-shell relative grid min-h-[100svh] grid-rows-[56px,auto,54px,28px] overflow-visible md:h-[100svh] md:grid-rows-[72px,1fr,72px,34px] md:overflow-hidden">
-      <header class="z-20 flex items-center justify-between gap-3 bg-[#0F4C5C] px-4 text-white md:px-8">
+    <div
+      class:list={[
+        "desktop-shell relative grid min-h-[100svh] overflow-visible md:h-[100svh] md:overflow-hidden",
+        isHome ? "grid-rows-[56px,auto,54px,28px] md:grid-rows-[72px,1fr,72px,34px]" : "grid-rows-[1fr,54px,28px] md:grid-rows-[1fr,72px,34px]",
+      ]}
+    >
+      <header
+        class:list={[
+          "z-20 flex h-[56px] items-center justify-between gap-3 px-4 text-white md:h-[72px] md:px-8",
+          isHome ? "bg-[#0F4C5C]" : "absolute inset-x-0 top-0 bg-[#0F4C5C]/72 backdrop-blur-sm",
+        ]}
+      >
         <a href="/" class="brand-wordmark h-full text-white hover:text-white" aria-label="Ir a inicio">
           <span class="brand-wmd">WMD</span>
           <span class="brand-consultores">CONSULTORES</span>
@@ -80,8 +91,14 @@ const currentPath = normalizePath(Astro.url.pathname);
       </div>
     </div>
 
-    <div class="mobile-shell min-vh-100 bg-light">
-      <header class="bg-petroleo text-white border-bottom border-white border-opacity-25">
+    <div class:list={["mobile-shell min-vh-100 bg-light", !isHome && "position-relative"]}>
+      <header
+        class:list={[
+          "text-white border-bottom border-white border-opacity-25",
+          isHome ? "bg-petroleo" : "position-absolute top-0 start-0 end-0 z-3",
+        ]}
+        style={isHome ? undefined : "background: rgba(0, 64, 80, 0.72); backdrop-filter: blur(6px);"}
+      >
         <div class="container-fluid py-3 text-center">
           <a href="/" class="d-inline-block text-white text-decoration-none fw-bold fs-5">WMD CONSULTORES</a>
           <nav class="d-flex flex-nowrap gap-2 overflow-auto pt-2" aria-label="Secciones móvil">
@@ -100,7 +117,7 @@ const currentPath = normalizePath(Astro.url.pathname);
         </div>
       </header>
 
-      <main class="container-fluid py-3">
+      <main class:list={[isHome ? "container-fluid py-3" : "container-fluid px-3 pb-3 pt-0"]}>
         <slot name="mobile">
           <slot />
         </slot>

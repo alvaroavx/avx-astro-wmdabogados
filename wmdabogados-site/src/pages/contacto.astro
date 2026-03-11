@@ -4,48 +4,53 @@ import { BROCHURE_URL } from "../utils/cards";
 ---
 
 <CardShell title="Contacto | WMD Consultores" description="Contáctanos para recibir asesoría jurídica.">
-  <section slot="desktop" class="grid h-full grid-rows-[auto,1fr] gap-3 p-3 md:gap-4 md:p-8">
-    <header class="space-y-2">
-      <h1 class="text-3xl text-petroleo md:text-4xl">Contacto</h1>
-    </header>
+  <section slot="desktop" class="grid h-full grid-rows-[400px,1fr] overflow-hidden">
+    <div class="relative w-full overflow-hidden">
+      <img src="/images/contacto.jpg" alt="Contacto WMD Consultores" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50"></div>
+      <h1 class="absolute bottom-4 left-5 text-3xl font-bold text-white md:bottom-6 md:left-8 md:text-5xl">Contacto</h1>
+    </div>
 
-    <div class="grid min-h-0 gap-3 md:gap-4 md:grid-cols-[0.9fr,1.1fr]">
-      <aside class="flex min-h-0 flex-col gap-2 rounded-xl border border-petroleo/15 bg-gray-50 p-3 md:gap-3 md:p-5">
-        <p class="rounded-lg bg-white p-3 text-sm leading-relaxed text-gray-700 md:text-base">
-          Nos estamos trasladando a otra oficina, pronto informaremos nuestra nueva dirección.
-        </p>
+    <div class="min-h-0 px-3 pb-4 pt-3 md:px-8 md:pb-8 md:pt-4">
+      <div class="grid h-full min-h-0 gap-3 md:gap-4 md:grid-cols-[0.9fr,1.1fr]">
+        <aside class="flex min-h-0 flex-col gap-2 rounded-xl border border-petroleo/15 bg-gray-50 p-3 md:gap-3 md:p-5">
+          <p class="rounded-lg bg-white p-3 text-sm leading-relaxed text-gray-700 md:text-base">
+            Nos estamos trasladando a otra oficina, pronto informaremos nuestra nueva dirección.
+          </p>
 
-        <div class="rounded-lg bg-white p-3 text-sm md:text-base">
-          <p><span class="font-semibold text-petroleo">Teléfono:</span> (56) 2 2415 9171</p>
-          <a href={BROCHURE_URL} download class="mt-2 inline-block font-semibold underline underline-offset-4">Descargar brochure</a>
-        </div>
-      </aside>
+          <div class="rounded-lg bg-white p-3 text-sm md:text-base">
+            <p><span class="font-semibold text-petroleo">Teléfono:</span> (56) 2 2415 9171</p>
+            <a href={BROCHURE_URL} download class="mt-2 inline-block font-semibold underline underline-offset-4">Descargar brochure</a>
+          </div>
+        </aside>
 
-      <form id="contact-form" class="grid min-h-0 grid-rows-[auto,auto,1fr,auto,auto] gap-2 rounded-xl border border-petroleo/15 bg-gray-50 p-3 md:gap-3 md:p-5" novalidate>
-        <div>
-          <label for="nombre" class="mb-1 block text-sm font-medium text-gray-700">Nombre</label>
-          <input id="nombre" name="nombre" type="text" autocomplete="name" required />
-        </div>
+        <form id="contact-form" class="grid min-h-0 grid-rows-[auto,auto,1fr,auto,auto] gap-2 rounded-xl border border-petroleo/15 bg-gray-50 p-3 md:gap-3 md:p-5" novalidate>
+          <div>
+            <label for="nombre" class="mb-1 block text-sm font-medium text-gray-700">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required />
+          </div>
 
-        <div>
-          <label for="correo" class="mb-1 block text-sm font-medium text-gray-700">Correo</label>
-          <input id="correo" name="correo" type="email" autocomplete="email" required />
-        </div>
+          <div>
+            <label for="correo" class="mb-1 block text-sm font-medium text-gray-700">Correo</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" required />
+          </div>
 
-        <div class="min-h-0">
-          <label for="mensaje" class="mb-1 block text-sm font-medium text-gray-700">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="4" class="h-[calc(100%-1.75rem)] min-h-[72px] resize-none md:min-h-[96px]" required></textarea>
-        </div>
+          <div class="min-h-0">
+            <label for="mensaje" class="mb-1 block text-sm font-medium text-gray-700">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" class="h-[calc(100%-1.75rem)] min-h-[72px] resize-none md:min-h-[96px]" required></textarea>
+          </div>
 
-        <button type="submit" class="btn btn-primary w-full md:w-auto">Enviar</button>
+          <button type="submit" class="btn btn-primary w-full md:w-auto">Enviar</button>
 
-        <p id="form-status" class="text-sm font-medium" aria-live="polite"></p>
-      </form>
+          <p id="form-status" class="text-sm font-medium" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </section>
 
   <section slot="mobile" class="d-grid gap-3">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm overflow-hidden">
+      <img src="/images/contacto.jpg" class="card-img-top h-[400px] object-cover" alt="Contacto WMD Consultores" />
       <div class="card-body">
         <h1 class="h4 text-petroleo mb-2">Contacto</h1>
         <p class="mb-3">Nos estamos trasladando a otra oficina, pronto informaremos nuestra nueva dirección.</p>
@@ -130,4 +135,3 @@ import { BROCHURE_URL } from "../utils/cards";
     }
   </script>
 </CardShell>
-

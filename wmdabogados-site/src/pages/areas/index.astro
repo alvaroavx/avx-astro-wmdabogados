@@ -63,36 +63,41 @@ const areas = [
 ---
 
 <CardShell title="Áreas | WMD Consultores" description="Áreas de práctica de WMD Consultores.">
-  <section slot="desktop" class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
-    <header>
-      <h1 class="text-4xl text-petroleo md:text-5xl">Áreas</h1>
-    </header>
+  <section slot="desktop" class="grid h-full grid-rows-[400px,1fr] overflow-hidden">
+    <div class="relative w-full overflow-hidden">
+      <img src="/images/areas.jpg" alt="Áreas de práctica WMD Consultores" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50"></div>
+      <h1 class="absolute bottom-4 left-5 text-3xl font-bold text-white md:bottom-6 md:left-8 md:text-5xl">Áreas</h1>
+    </div>
 
-    <div class="flex min-h-0 gap-3 overflow-x-auto snap-x snap-mandatory md:grid md:overflow-visible md:snap-none md:grid-cols-2 xl:grid-cols-3" id="areas-grid">
-      {areas.map((area, index) => (
-        <article
-          class:list={[
-            "group grid min-h-0 min-w-[86%] snap-center grid-rows-[auto,1fr] gap-2 rounded-xl border p-3 transition-all duration-200 hover:z-10 hover:scale-[1.02] md:min-w-0 md:p-4",
-            index === 0
-              ? "border-petroleo bg-petroleo/10 shadow-sm"
-              : "border-petroleo/15 bg-gray-50",
-          ]}
-          tabindex="0"
-          data-area-card
-        >
-          <h2 class="text-lg font-semibold text-petroleo md:text-xl">{area.title}</h2>
-          <ul class="list-disc pl-5 leading-snug text-gray-800 md:text-[1.02rem]" data-autofit data-autofit-min="7.5" data-autofit-max="14">
-            {area.items.map((item) => (
-              <li set:html={item} />
-            ))}
-          </ul>
-        </article>
-      ))}
+    <div class="min-h-0 px-5 pb-4 pt-3 md:px-8 md:pb-8 md:pt-4">
+      <div class="flex h-full min-h-0 gap-3 overflow-x-auto snap-x snap-mandatory md:grid md:overflow-visible md:snap-none md:grid-cols-2 xl:grid-cols-3" id="areas-grid">
+        {areas.map((area, index) => (
+          <article
+            class:list={[
+              "group grid min-h-0 min-w-[86%] snap-center grid-rows-[auto,1fr] gap-2 rounded-xl border p-3 transition-all duration-200 hover:z-10 hover:scale-[1.02] md:min-w-0 md:p-4",
+              index === 0
+                ? "border-petroleo bg-petroleo/10 shadow-sm"
+                : "border-petroleo/15 bg-gray-50",
+            ]}
+            tabindex="0"
+            data-area-card
+          >
+            <h2 class="text-lg font-semibold text-petroleo md:text-xl">{area.title}</h2>
+            <ul class="list-disc pl-5 leading-snug text-gray-800 md:text-[1.02rem]" data-autofit data-autofit-min="7.5" data-autofit-max="14">
+              {area.items.map((item) => (
+                <li set:html={item} />
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
   <section slot="mobile" class="d-grid gap-3">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm overflow-hidden">
+      <img src="/images/areas.jpg" class="card-img-top h-[400px] object-cover" alt="Áreas de práctica WMD Consultores" />
       <div class="card-body">
         <h1 class="h4 text-petroleo mb-0">Áreas</h1>
       </div>

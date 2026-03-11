@@ -3,105 +3,130 @@ import CardShell from "../layouts/CardShell.astro";
 ---
 
 <CardShell title="Nosotros | WMD Consultores" description="Estrategia jurídica clara, con defensa integral para personas y empresas.">
-  <section slot="desktop" class="grid h-full grid-rows-[auto,1fr] gap-3 p-5 md:gap-4 md:p-8">
-    <header class="space-y-2">
-      <h1 class="text-3xl text-petroleo md:text-4xl">Nosotros</h1>
-      <p class="text-sm text-gray-700 md:text-base">Estrategia jurídica clara, con defensa integral para personas y empresas.</p>
-    </header>
+  <section slot="desktop" class="grid h-full grid-rows-[400px,1fr] overflow-hidden">
+    <div class="relative w-full overflow-hidden">
+      <img src="/images/nosotros.jpg" alt="Nosotros WMD Consultores" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50"></div>
+      <h1 class="absolute bottom-4 left-5 text-3xl font-bold text-white md:bottom-6 md:left-8 md:text-5xl">Nosotros</h1>
+    </div>
 
-    <div class="grid min-h-0 gap-3 md:grid-cols-2 md:gap-4">
-      <article class="grid min-h-0 grid-rows-[1fr,auto,auto] gap-3 rounded-xl border border-petroleo/15 bg-gray-50 p-4 md:p-5">
-        <div data-autofit data-autofit-min="8" data-autofit-max="14">
-          <h2 class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-petroleo/80 md:text-sm">Qué hacemos</h2>
-          <ul class="list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-gray-800 md:text-base">
-            <li>Asesoría a personas y empresas en diagnóstico de necesidades jurídicas en áreas bancaria, financiera, comercial y tributaria.</li>
-            <li>Planificación e implementación de soluciones recomendadas.</li>
-            <li>Exposición clara y transparente de alternativas para decisiones informadas.</li>
-            <li>Certeza jurídica, minimizando costos y optimizando oportunidades comerciales.</li>
-            <li>Defensa judicial y administrativa de intereses y derechos cuando corresponde.</li>
-          </ul>
-        </div>
+    <div class="min-h-0 overflow-y-auto px-5 pb-4 pt-3 md:px-8 md:pb-6 md:pt-4">
+      <div class="grid h-full min-h-0 gap-4 md:grid-cols-[1.22fr,0.78fr] md:gap-4">
+        <article class="min-h-0">
+          <p class="text-sm uppercase tracking-[0.28em] text-petroleo/70 md:text-[0.82rem]">Estrategia jurídica clara, con defensa integral para personas y empresas.</p>
 
-        <div class="rounded-lg border border-petroleo/20 bg-white p-3">
-          <div class="callout">
-            <p class="callout__text">Claridad y transparencia para decisiones informadas, con certeza jurídica.</p>
+          <p class="mt-4 text-lg italic leading-relaxed text-petroleo md:text-2xl">
+            Claridad y transparencia para decisiones informadas, con certeza jurídica.
+          </p>
+
+          <div class="mt-5">
+            <h2 class="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-petroleo/80 md:text-base">Qué hacemos</h2>
+            <ul class="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-gray-800 md:text-[0.95rem]">
+              <li>Asesoría a personas y empresas en diagnóstico de necesidades jurídicas en áreas bancaria, financiera, comercial y tributaria.</li>
+              <li>Planificación e implementación de soluciones recomendadas.</li>
+              <li>Exposición clara y transparente de alternativas para decisiones informadas.</li>
+              <li>Certeza jurídica, minimizando costos y optimizando oportunidades comerciales.</li>
+              <li>Defensa judicial y administrativa de intereses y derechos cuando corresponde.</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="flex flex-wrap gap-2">
-          <a href="/areas" class="btn btn-primary">Ver Áreas</a>
-          <a href="/contacto" class="btn btn-secondary">Contacto</a>
-        </div>
-      </article>
-
-      <article class="grid min-h-0 grid-rows-[auto,1fr,auto] gap-3 rounded-xl border border-petroleo/15 bg-gray-50 p-4 md:p-5">
-        <div>
-          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-petroleo/80 md:text-sm">Cómo trabajamos</h2>
-          <div class="mt-2 grid gap-2 md:grid-cols-3">
-            <div class="rounded-lg border border-petroleo/20 bg-white px-3 py-2 text-center text-xs font-semibold text-petroleo md:text-sm">Diagnóstico</div>
-            <div class="rounded-lg border border-petroleo/20 bg-white px-3 py-2 text-center text-xs font-semibold text-petroleo md:text-sm">Alternativas claras</div>
-            <div class="rounded-lg border border-petroleo/20 bg-white px-3 py-2 text-center text-xs font-semibold text-petroleo md:text-sm">Implementación / Defensa</div>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <a href="/areas" class="btn btn-primary">Ver Áreas</a>
+            <a href="/contacto" class="btn btn-secondary">Contacto</a>
           </div>
-        </div>
+        </article>
 
-        <div class="rounded-lg border border-petroleo/20 bg-white p-3 text-base leading-relaxed text-gray-800 md:text-lg" data-autofit data-autofit-min="9" data-autofit-max="16">
-          <p>
-            Nuestro modelo de trabajo busca crear lazos personalizados y de confianza con nuestros clientes, mediante una asesoría realizada por profesionales con amplia experiencia en el ámbito privado y público.
-          </p>
-          <p>
-            Nos enfocamos en otorgar respuestas oportunas, tanto en asuntos cotidianos como en temas complejos del quehacer empresarial.
-          </p>
-        </div>
+        <aside class="min-h-0 md:pl-4">
+          <h2 class="text-sm font-semibold uppercase tracking-[0.22em] text-petroleo/80 md:text-base">Cómo trabajamos</h2>
 
-        <div class="rounded-lg border border-petroleo/20 bg-white p-3">
-          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-petroleo/80 md:text-sm">Alianza estratégica</h2>
-          <p class="mt-1 text-sm text-gray-700 md:text-base">
-            Somos aliados estratégicos de Miguel Ángel Nacrur, abogado experto en temas bancarios y comerciales.
-          </p>
-        </div>
-      </article>
+          <div class="mt-4 flex items-center gap-2 overflow-x-auto pb-1 text-petroleo">
+            <div class="shrink-0">
+              <p class="text-base font-semibold whitespace-nowrap md:text-lg">Diagnóstico</p>
+            </div>
+
+            <span aria-hidden="true" class="text-lg text-petroleo/50 md:text-xl">&rarr;</span>
+
+            <div class="shrink-0">
+              <p class="text-base font-semibold whitespace-nowrap md:text-lg">Alternativas claras</p>
+            </div>
+
+            <span aria-hidden="true" class="text-lg text-petroleo/50 md:text-xl">&rarr;</span>
+
+            <div class="shrink-0">
+              <p class="text-base font-semibold whitespace-nowrap md:text-lg">Implementación / Defensa</p>
+            </div>
+          </div>
+
+          <div class="mt-5 space-y-3 text-sm leading-relaxed text-gray-800 md:text-[0.95rem]">
+            <p>
+              Nuestro modelo de trabajo busca crear lazos personalizados y de confianza con nuestros clientes, mediante una asesoría realizada por profesionales con amplia experiencia en el ámbito privado y público.
+            </p>
+            <p>
+              Nos enfocamos en otorgar respuestas oportunas, tanto en asuntos cotidianos como en temas complejos del quehacer empresarial.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-1">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.22em] text-petroleo/80 md:text-base">Alianza estratégica</h2>
+            <p class="mt-2 text-sm leading-relaxed text-gray-700 md:text-[0.95rem]">
+              Somos aliados estratégicos de Miguel Ángel Nacrur, abogado experto en temas bancarios y comerciales.
+            </p>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <section slot="mobile" class="d-grid gap-3">
-    <div class="card border-0 shadow-sm">
-      <div class="card-body">
-        <h1 class="h4 text-petroleo mb-2">Nosotros</h1>
-        <p class="text-muted mb-3">Estrategia jurídica clara, con defensa integral para personas y empresas.</p>
-        <ul class="mb-3">
-          <li>Asesoría a personas y empresas en diagnóstico de necesidades jurídicas en áreas bancaria, financiera, comercial y tributaria.</li>
-          <li>Planificación e implementación de soluciones recomendadas.</li>
-          <li>Exposición clara y transparente de alternativas para decisiones informadas.</li>
-          <li>Certeza jurídica, minimizando costos y optimizando oportunidades comerciales.</li>
-          <li>Defensa judicial y administrativa de intereses y derechos cuando corresponde.</li>
-        </ul>
-        <div class="border-start border-4 border-info ps-3 mb-3">
-          <strong>Claridad y transparencia para decisiones informadas, con certeza jurídica.</strong>
-        </div>
-        <div class="d-grid gap-2 d-sm-flex">
-          <a href="/areas" class="btn btn-outline-primary">Ver Áreas</a>
-          <a href="/contacto" class="btn btn-primary">Contacto</a>
-        </div>
-      </div>
+  <section slot="mobile" class="d-grid gap-4">
+    <div class="overflow-hidden rounded-4">
+      <img src="/images/nosotros.jpg" class="img-fluid h-[400px] w-100 object-cover" alt="Nosotros WMD Consultores" />
     </div>
 
-    <div class="card border-0 shadow-sm">
-      <div class="card-body">
-        <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-3">Cómo trabajamos</h2>
-        <div class="d-grid gap-2 mb-3">
-          <div class="badge text-bg-light border text-petroleo py-2">Diagnóstico</div>
-          <div class="badge text-bg-light border text-petroleo py-2">Alternativas claras</div>
-          <div class="badge text-bg-light border text-petroleo py-2">Implementación / Defensa</div>
-        </div>
-        <p class="mb-2">
-          Nuestro modelo de trabajo busca crear lazos personalizados y de confianza con nuestros clientes, mediante una asesoría realizada por profesionales con amplia experiencia en el ámbito privado y público.
-        </p>
-        <p class="mb-3">
-          Nos enfocamos en otorgar respuestas oportunas, tanto en asuntos cotidianos como en temas complejos del quehacer empresarial.
-        </p>
-        <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-2">Alianza estratégica</h2>
-        <p class="mb-0">Somos aliados estratégicos de Miguel Ángel Nacrur, abogado experto en temas bancarios y comerciales.</p>
+    <article class="px-1">
+      <p class="small text-uppercase mb-2" style="letter-spacing: 0.24em; color: rgba(0, 64, 80, 0.72);">Estrategia jurídica clara, con defensa integral para personas y empresas.</p>
+      <h1 class="h4 text-petroleo mb-3">Nosotros</h1>
+      <p class="fs-5 fst-italic text-petroleo mb-4">Claridad y transparencia para decisiones informadas, con certeza jurídica.</p>
+
+      <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-3">Qué hacemos</h2>
+      <ul class="mb-4 ps-3">
+        <li>Asesoría a personas y empresas en diagnóstico de necesidades jurídicas en áreas bancaria, financiera, comercial y tributaria.</li>
+        <li>Planificación e implementación de soluciones recomendadas.</li>
+        <li>Exposición clara y transparente de alternativas para decisiones informadas.</li>
+        <li>Certeza jurídica, minimizando costos y optimizando oportunidades comerciales.</li>
+        <li>Defensa judicial y administrativa de intereses y derechos cuando corresponde.</li>
+      </ul>
+
+      <div class="d-grid gap-2 d-sm-flex mb-4">
+        <a href="/areas" class="btn btn-outline-primary">Ver Áreas</a>
+        <a href="/contacto" class="btn btn-primary">Contacto</a>
       </div>
-    </div>
+    </article>
+
+    <article class="px-1 pt-1">
+      <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-3">Cómo trabajamos</h2>
+      <div class="mb-4 d-flex align-items-center gap-2 overflow-auto text-petroleo pb-1">
+        <div class="flex-shrink-0">
+          <p class="fs-5 fw-semibold mb-0 text-nowrap">Diagnóstico</p>
+        </div>
+        <span aria-hidden="true" class="fs-5 text-muted">&rarr;</span>
+        <div class="flex-shrink-0">
+          <p class="fs-5 fw-semibold mb-0 text-nowrap">Alternativas claras</p>
+        </div>
+        <span aria-hidden="true" class="fs-5 text-muted">&rarr;</span>
+        <div class="flex-shrink-0">
+          <p class="fs-5 fw-semibold mb-0 text-nowrap">Implementación / Defensa</p>
+        </div>
+      </div>
+
+      <p class="mb-3">
+        Nuestro modelo de trabajo busca crear lazos personalizados y de confianza con nuestros clientes, mediante una asesoría realizada por profesionales con amplia experiencia en el ámbito privado y público.
+      </p>
+      <p class="mb-4">
+        Nos enfocamos en otorgar respuestas oportunas, tanto en asuntos cotidianos como en temas complejos del quehacer empresarial.
+      </p>
+
+      <h2 class="h6 text-uppercase tracking-wide text-petroleo mb-2">Alianza estratégica</h2>
+      <p class="mb-0">Somos aliados estratégicos de Miguel Ángel Nacrur, abogado experto en temas bancarios y comerciales.</p>
+    </article>
   </section>
 </CardShell>
